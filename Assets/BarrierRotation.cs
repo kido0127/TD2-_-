@@ -73,7 +73,7 @@ public class BarrierRotation : MonoBehaviour
         angles.x = initialXAngle;
         transform.eulerAngles = angles;
     }
-
+    Å@
     // QÉLÅ[âüâ∫éû
     public void OnMoveBarrierCloser(InputValue value)
     {
