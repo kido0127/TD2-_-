@@ -43,37 +43,35 @@ public class BarrierRotation : MonoBehaviour
     }
     void Update()
     {
-        // プレイヤーの左右入力で回転
-        Vector2 input = playerMove.MoveInput;
-        if (Mathf.Abs(input.x) > 0.01f)
+        // 左右入力で回転
+        float horizontalInput = Input.GetAxis("Horizontal"); // ←→
+        if (Mathf.Abs(horizontalInput) > 0.01f)
         {
-            currentAngle += input.x * rotateSpeed * Time.deltaTime;
+            currentAngle += horizontalInput * rotateSpeed * Time.deltaTime;
         }
 
-        // Q/E キーで距離調整
+        // Q/Eで距離調整
         if (Keyboard.current.qKey.isPressed) adjustInput = 1f;
         else if (Keyboard.current.eKey.isPressed) adjustInput = -1f;
         else adjustInput = 0f;
 
+        // 距離更新
         currentRadius += adjustInput * adjustSpeed * Time.deltaTime;
         currentRadius = Mathf.Clamp(currentRadius, minRadius, maxRadius);
 
-        // プレイヤー中心からの位置計算
+        // プレイヤー中心からの位置を計算
         float rad = currentAngle * Mathf.Deg2Rad;
         Vector3 offset = new Vector3(Mathf.Sin(rad), 0, Mathf.Cos(rad)) * currentRadius;
-
-        // Yは初期相対位置を維持
-        offset.y = initialY;
-
         transform.position = player.position + offset;
 
-        // プレイヤー方向を向く
+        // プレイヤーを向く
         transform.LookAt(player.position);
         Vector3 angles = transform.eulerAngles;
         angles.x = initialXAngle;
         transform.eulerAngles = angles;
     }
-    　
+
+
     // Qキー押下時
     public void OnMoveBarrierCloser(InputValue value)
     {
