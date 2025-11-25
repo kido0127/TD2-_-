@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Wall
   - Boss
+  - Barrier
+  - Bullet
   layers:
   - Default
   - TransparentFX
