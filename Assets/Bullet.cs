@@ -4,7 +4,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float speed = 12f;
-    public float lifetime = 3f;
+    public float lifetime = 3;
     public float radius = 0.1f; // SphereCast‚Ì”¼Œa
 
     private Rigidbody rb;
@@ -18,6 +18,7 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        rb.linearVelocity = transform.forward * speed; // linearVelocity‚ğg—p
         rb.linearVelocity = transform.forward * speed; // linearVelocity‚ğg—p
         lastPos = transform.position;
         // ’e“¯m‚ÌÕ“Ë‚ğ–³‹
