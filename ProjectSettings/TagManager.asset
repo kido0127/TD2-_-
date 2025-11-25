@@ -4,10 +4,7 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Rail_Up
-  - Rail_Down
-  - Rail_Left
-  - Rail_Right
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -17,7 +14,7 @@ TagManager:
   - UI
   - wallLayer
   - Barrier
-  - 
+  - Wall
   - 
   - 
   - 
