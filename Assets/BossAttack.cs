@@ -6,6 +6,8 @@ public class BossAttack : MonoBehaviour
 {
     [Header("ターゲット")]
     public Transform player;
+    [Header("発射位置")]
+    public Transform firePoint;
 
     [Header("プレハブ")]
     public GameObject togePrefab;   // 近接（棘）
@@ -159,7 +161,7 @@ public class BossAttack : MonoBehaviour
         }
 
         lr.positionCount = 2; // 初期は単純な線
-        lr.SetPosition(0, transform.position);
+        lr.SetPosition(0, firePoint.position);
         lr.SetPosition(1, player.position);
 
         // ② チャージ中：2秒間プレイヤー追従
@@ -242,14 +244,11 @@ public class BossAttack : MonoBehaviour
         int count = 8;
         for (int i = 0; i < count; i++)
         {
-            Vector3 dir = (player.position - transform.position).normalized;
+            Vector3 dir = (player.position - firePoint.position).normalized;
+            Instantiate(bulletPrefab, firePoint.position, Quaternion.LookRotation(dir));
 
-            // 弾を向ける（移動はBullet.cs側でやる）
-            Instantiate(
-                bulletPrefab,
-                transform.position,
-                Quaternion.LookRotation(dir)
-            );
+
+           
 
             yield return new WaitForSeconds(0.1f);
         }
